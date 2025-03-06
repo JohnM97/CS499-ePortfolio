@@ -60,10 +60,10 @@ typings/
 # next.js build output
 .next
 
-# Filter out VScode Working Files
-.vscode/* 
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
+# Filter out VScode Working Files 
+.vscode/*
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
 !.vscode/extensions.json 
-*.code-workspace
+*.code-workspace 
