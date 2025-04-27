@@ -1,19 +1,48 @@
-const express = require('express');           // Express app
-const router = express.Router();              // Router logic
+const express = require('express');
+const router = express.Router();
 
-// This is where we import the controllers we will route
 const tripsController = require('../controllers/trips');
+const authController = require('../controllers/authentication');
+const jwt = require('jsonwebtoken');
 
-// define route for our trips endpoint
+// JWT Authentication Middleware
+function authenticateJWT(req, res, next) {
+  const authHeader = req.headers['authorization'];
+
+  if (!authHeader) {
+    return res.sendStatus(401);
+  }
+
+  const token = authHeader.split(' ')[1];
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ message: 'Token validation failed' });
+    }
+    req.auth = decoded;
+    next();
+  });
+}
+
+// Routes
+router.get('/hello', (req, res) => {
+  res.json({ message: 'Hello World!' });
+});
+
+router.route('/register').post(authController.register);
+router.route('/login').post(authController.login);
+
 router
   .route('/trips')
-  .get(tripsController.tripsList)             // GET Method routes tripList
-  .post(tripsController.tripsAddTrip);        // POST Method Adds a Trip
+  .get(tripsController.tripsList)
+  .post(authenticateJWT, tripsController.tripsAddTrip);
 
-// GET Method routes tripsFindByCode - requires parameter
 router
   .route('/trips/:tripCode')
   .get(tripsController.tripsFindByCode)
-  .put(tripsController.tripsUpdateTrip);    // PUT Method updates a Trip
+  .put(authenticateJWT, tripsController.tripsUpdateTrip);
 
 module.exports = router;
