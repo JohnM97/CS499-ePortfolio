@@ -28,7 +28,7 @@ This artifact shows my ability to improve maintainability, readability, and secu
 <details>
   <summary><strong>Show original excerpt</strong></summary>
 
-```javascript
+{% highlight javascript %}
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -41,7 +41,7 @@ var travelRouter = require('./app_server/routes/travel');
 var apiRouter = require('./app_api/routes/index');
 
 // ... middleware, routes, and error handlers all configured here ...
-```
+{% endhighlight %}
 
 </details>
 
@@ -55,7 +55,7 @@ var apiRouter = require('./app_api/routes/index');
 <details>
   <summary><strong>Show enhanced excerpt</strong></summary>
 
-```javascript
+{% highlight javascript %}
 // Dependencies
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -95,7 +95,7 @@ app.use(handleNotFound);
 app.use(handleGeneralError);
 
 module.exports = app;
-```
+{% endhighlight %}
 
 </details>
 
@@ -112,7 +112,7 @@ module.exports = app;
 <details>
   <summary><strong>logger.js</strong></summary>
 
-```javascript
+{% highlight javascript %}
 const fs = require('fs');
 const morgan = require('morgan');
 const path = require('path');
@@ -123,28 +123,28 @@ const logStream = fs.createWriteStream(
 );
 
 module.exports = morgan('combined', { stream: logStream });
-```
+{% endhighlight %}
 
 </details>
 
 <details>
   <summary><strong>cors.js</strong></summary>
 
-```javascript
+{% highlight javascript %}
 module.exports = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', process.env.CORS_ORIGIN || '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
 };
-```
+{% endhighlight %}
 
 </details>
 
 <details>
   <summary><strong>errorHandler.js</strong></summary>
 
-```javascript
+{% highlight javascript %}
 const createError = require('http-errors');
 
 function handleUnauthorized(err, req, res, next) {
@@ -164,7 +164,7 @@ function handleGeneralError(err, req, res, next) {
 }
 
 module.exports = { handleUnauthorized, handleNotFound, handleGeneralError };
-```
+{% endhighlight %}
 
 </details>
 
