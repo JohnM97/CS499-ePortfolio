@@ -1,25 +1,175 @@
-/* Full-site background */
-html, body {
-  height: 100%;
+/* ========== Global Theme Overrides for Minima ========== */
+:root{
+  --bg-url: url('{{ site.baseurl }}/assets/images/background-theme.png');
+  --card-bg: rgba(16, 22, 28, 0.78);        /* glass card */
+  --card-bg-strong: rgba(16, 22, 28, 0.92); /* for headers/nav */
+  --text: #eaf2f8;
+  --muted: #b7c7d6;
+  --accent: #20e3ff;  /* cyan glow */
+  --accent-2: #90f0ff;/* lighter hover */
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
-body {
-  background: url('{{ site.baseurl }}/assets/images/background-theme.png')
-              no-repeat center center fixed;
+
+/* Background image + subtle overlay for readability */
+html, body { height: 100%; }
+body{
+  color: var(--text);
+  background:
+    linear-gradient(to bottom, rgba(5,8,12,.35), rgba(5,8,12,.55)),
+    var(--bg-url) no-repeat center center fixed;
   background-size: cover;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional: add a soft backdrop to page content for readability */
-.site-content,
-.page-content,
-.wrapper {
-  background: rgba(15, 18, 22, 0.72); /* subtle dark glass */
-  backdrop-filter: blur(2px);
+/* Header + footer get slightly stronger glass */
+.site-header,
+.site-footer {
+  background: var(--card-bg-strong);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Title + nav polish */
+.site-title, .site-title:visited {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.site-nav .page-link {
+  color: var(--muted);
+  margin-left: 1rem;
+}
+.site-nav .page-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* Main content wrapped in a soft glass card */
+.page-content {
+  padding: 2rem 0;
+}
+.page-content .wrapper{
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: #f7fbff;
+  line-height: 1.2;
+  margin-top: 0;
+}
+h1 { font-size: 2.25rem; letter-spacing: .3px; }
+h2 { font-size: 1.6rem; margin-top: 1.5rem; }
+h3 { font-size: 1.25rem; color: var(--accent-2); }
+
+/* Links */
+a{
+  color: var(--accent);
+  text-underline-offset: .15em;
+}
+a:hover{
+  color: var(--accent-2);
+}
+
+/* Horizontal rule */
+hr{
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 1.25rem 0;
+}
+
+/* Lists spacing */
+ul, ol { margin-top: .5rem; margin-bottom: .75rem; }
+
+/* Code blocks */
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+pre {
+  background: rgba(6,10,14,.7);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1.25rem;
+  padding: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+  overflow: auto;
+}
+code {
+  background: rgba(6,10,14,.55);
+  border: 1px solid var(--border);
+  padding: .15rem .35rem;
+  border-radius: 6px;
 }
 
-/* Optional: headings pop a bit on dark art */
-h1, h2, h3 {
-  color: #eaf6ff;
+/* Details/summary toggles for your excerpts */
+details {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .75rem 1rem;
+  background: rgba(10,14,18,.6);
+  margin: .75rem 0 1rem;
+}
+details[open]{
+  background: rgba(10,14,18,.75);
+}
+summary{
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent-2);
+}
+summary::marker { color: var(--accent); }
+
+/* Tables (if you add any later) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(10,14,18,.6);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+th, td {
+  padding: .65rem .8rem;
+  border-bottom: 1px solid var(--border);
+}
+th { color: var(--accent-2); text-align: left; }
+
+/* Blockquotes (for quotes/captions) */
+blockquote {
+  border-left: 3px solid var(--accent);
+  background: rgba(10,14,18,.55);
+  padding: .75rem 1rem;
+  color: var(--muted);
+  border-radius: 8px;
 }
 
+/* Make images look intentional */
+img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+figcaption{
+  color: var(--muted);
+  font-size: .95rem;
+  margin-top: .35rem;
+  text-align: center;
+}
+
+/* Small screens */
+@media (max-width: 720px){
+  .page-content .wrapper{ padding: 1.25rem; }
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.4rem; }
+}
