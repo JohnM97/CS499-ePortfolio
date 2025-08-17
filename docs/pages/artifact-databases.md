@@ -6,18 +6,18 @@ permalink: /pages/artifact-databases.html
 ---
 
 ## Artifact Summary
-- **What it is / when created:** _(brief)_
-- **Why included:** _(skills, relevance)_
-- **Enhancement focus:** _(what changed & why)_
+This artifact is a course catalog project where I implemented multiple data structures to store and retrieve course information, originally created in CS 300. The program loads data from a file and allows users to print and search for courses.
 
-## Before vs. After
-- **Original:** Link to original code/files in [Downloads](/downloads/) or repository paths.
-- **Enhanced:** Link to enhanced code/files and commits.
+## Why Included
+I selected this artifact because it demonstrates my ability to implement and compare algorithms and data structures, a core skill in computer science. It shows how I can evaluate tradeoffs between approaches and optimize performance.
 
-## Narrative (required)
-- What you learned, challenges, feedback incorporated.
-- Which course outcomes were met or partially met.
+## Enhancement Focus
+The original version only used a vector to store course data. For the enhancement, I added implementations using a hash table and a binary search tree. This allowed me to compare lookup times, memory usage, and insertion efficiency across structures. By offering multiple implementations, I could demonstrate how data structure choice impacts program performance and scalability.
 
-## How to Run (if applicable)
-- Brief steps or link to README.
+## Reflection
+Enhancing this artifact taught me to think critically about algorithmic efficiency. Implementing the same functionality with different structures deepened my understanding of time complexity and tradeoffs between speed and memory. One challenge was ensuring consistent input validation across all three implementations, which I solved by building a validation function shared across modules. Incorporating instructor feedback, I added clear pseudocode and comments to make the code easier to follow.
 
+## Course Outcomes Met
+- Design and implement efficient algorithms and data structures.
+- Evaluate tradeoffs between multiple data structures for solving a problem.
+- Apply software design principles to ensure clarity and maintainability.
