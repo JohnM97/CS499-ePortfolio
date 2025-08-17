@@ -2,12 +2,15 @@
 # This file overrides Minima’s CSS bundle. Keep the front matter!
 ---
 
-@import "minima/skins/auto";  // optional: keep dark/light auto skin
-@import "minima";             // load the theme’s base styles first
+@import "minima/skins/auto";
+@import "minima";
+
+/* Use an SCSS variable for the background image */
+$bg-url: "{{ '/assets/images/background-theme.png' | relative_url }}";
 
 /* ====== Custom theme additions ====== */
 :root{
-  --bg-url: url('{{ "/assets/images/background-theme.png" | relative_url }}');
+  /* removed --bg-url to avoid SCSS parsing error */
   --card-bg: rgba(16, 22, 28, 0.78);
   --card-bg-strong: rgba(16, 22, 28, 0.92);
   --text: #eaf2f8;
@@ -18,17 +21,19 @@
   --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
-/* Background + overlay */
 html, body { height: 100%; }
 body{
   color: var(--text);
   background:
     linear-gradient(to bottom, rgba(5,8,12,.35), rgba(5,8,12,.55)),
-    var(--bg-url) no-repeat center center fixed;
+    url(#{$bg-url}) no-repeat center center fixed;
   background-size: cover;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* …keep the rest of your styles exactly as before … */
+
 
 /* Header/Footer glass */
 .site-header,
