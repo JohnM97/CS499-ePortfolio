@@ -42,6 +42,7 @@ var apiRouter = require('./app_api/routes/index');
 
 // ... middleware, routes, and error handlers all configured here ...
 ```
+
 </details>
 
 **View full file in repo:**  
@@ -95,6 +96,7 @@ app.use(handleGeneralError);
 
 module.exports = app;
 ```
+
 </details>
 
 **View full files in repo:**  
@@ -122,6 +124,7 @@ const logStream = fs.createWriteStream(
 
 module.exports = morgan('combined', { stream: logStream });
 ```
+
 </details>
 
 <details>
@@ -135,6 +138,7 @@ module.exports = (req, res, next) => {
   next();
 };
 ```
+
 </details>
 
 <details>
@@ -161,6 +165,7 @@ function handleGeneralError(err, req, res, next) {
 
 module.exports = { handleUnauthorized, handleNotFound, handleGeneralError };
 ```
+
 </details>
 
 ---
