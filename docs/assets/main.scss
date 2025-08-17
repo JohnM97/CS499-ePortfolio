@@ -119,5 +119,28 @@ body{
   width: 100%;
 }
 
+/* Fix inline code style in dark mode */
+code {
+  background: rgba(32, 227, 255, 0.1); /* subtle glass highlight */
+  color: #20e3ff;                     /* neon cyan text */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95em;
+}
+
+pre {
+  background: rgba(10, 15, 20, 0.9);
+  color: #eaf2f8;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+
+
 
 
