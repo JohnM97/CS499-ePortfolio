@@ -1,0 +1,110 @@
+---
+# This file overrides Minima’s CSS bundle. Keep the front matter!
+---
+
+@import "minima/skins/auto";  // optional: keep dark/light auto skin
+@import "minima";             // load the theme’s base styles first
+
+/* ====== Custom theme additions ====== */
+:root{
+  --bg-url: url('{{ "/assets/images/background-theme.png" | relative_url }}');
+  --card-bg: rgba(16, 22, 28, 0.78);
+  --card-bg-strong: rgba(16, 22, 28, 0.92);
+  --text: #eaf2f8;
+  --muted: #b7c7d6;
+  --accent: #20e3ff;
+  --accent-2: #90f0ff;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* Background + overlay */
+html, body { height: 100%; }
+body{
+  color: var(--text);
+  background:
+    linear-gradient(to bottom, rgba(5,8,12,.35), rgba(5,8,12,.55)),
+    var(--bg-url) no-repeat center center fixed;
+  background-size: cover;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header/Footer glass */
+.site-header,
+.site-footer {
+  background: var(--card-bg-strong);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* Main content glass card */
+.page-content { padding: 2rem 0; }
+.page-content .wrapper{
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+/* Typography & links */
+h1, h2, h3, h4 { color: #f7fbff; line-height: 1.2; }
+h1 { font-size: 2.25rem; letter-spacing: .3px; }
+h2 { font-size: 1.6rem; margin-top: 1.5rem; }
+h3 { font-size: 1.25rem; color: var(--accent-2); }
+
+a{ color: var(--accent); text-underline-offset: .15em; }
+a:hover{ color: var(--accent-2); }
+
+hr{
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 1.25rem 0;
+}
+
+/* Code blocks */
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+pre{
+  background: rgba(6,10,14,.7);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+  overflow: auto;
+}
+code{
+  background: rgba(6,10,14,.55);
+  border: 1px solid var(--border);
+  padding: .15rem .35rem;
+  border-radius: 6px;
+}
+
+/* <details> toggles */
+details{
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .75rem 1rem;
+  background: rgba(10,14,18,.6);
+  margin: .75rem 0 1rem;
+}
+details[open]{ background: rgba(10,14,18,.75); }
+summary{ cursor: pointer; font-weight: 600; color: var(--accent-2); }
+summary::marker { color: var(--accent); }
+
+/* Images & captions */
+img{ max-width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow); }
+figcaption{ color: var(--muted); font-size: .95rem; margin-top: .35rem; text-align: center; }
+
+/* Mobile */
+@media (max-width: 720px){
+  .page-content .wrapper{ padding: 1.25rem; }
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.4rem; }
+}
