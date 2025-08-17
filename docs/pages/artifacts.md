@@ -13,19 +13,19 @@ This section of my ePortfolio highlights three enhanced artifacts that represent
 ---
 
 ### Software Design & Engineering  
-**[View Narrative →](artifact-software.html)**  
+**[View Artifact & Narrative →](artifact-software.html)**  
 Refactored the Express server entry point into modular middleware, improving maintainability, readability, and security. Demonstrates my ability to structure back-end applications for clarity and scalability.  
 
 ---
 
 ### Algorithms & Data Structures  
-**[View Narrative →](artifact-algorithms.html)**  
+**[View Artifact & Narrative →](artifact-algorithms.html)**  
 Enhanced the Angular `Trip` interface with stronger typing and alignment to the database schema. Highlights my understanding of data structures, type safety, and consistency across the full stack.  
 
 ---
 
 ### Databases  
-**[View Narrative →](artifact-databases.html)**  
+**[View Artifact & Narrative →](artifact-databases.html)**  
 Upgraded the MongoDB `Trip` schema by converting weakly typed fields to numbers, adding indexing, and enforcing validation. Demonstrates my ability to design efficient, reliable, and production-ready database models.  
 
 ---
