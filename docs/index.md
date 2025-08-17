@@ -5,22 +5,18 @@ title: Home
 
 # CS 499 ePortfolio — John Munguia
 
-As I complete my Bachelor of Science in Computer Science at Southern New Hampshire University, this ePortfolio represents both the culmination of my academic work and a foundation for my professional career. Building this portfolio has allowed me to showcase not only the technical skills I developed throughout the program but also the professional values and goals that shape the kind of engineer I strive to be. Completing the capstone course and enhancing my artifacts has reinforced how far I have come in applying theory to practice and prepared me to contribute meaningfully in a professional software engineering role.
+## Professional Self-Assessment (Introduction)
 
-One of my greatest strengths developed through this program has been the ability to work effectively in team environments. Through Agile and Scrum-based projects, such as leading a pilot project for ChadaTech’s SNHU Travel application, I learned how to facilitate standups, retrospectives, and sprint planning while ensuring team members communicated openly and stayed aligned with our goals. These experiences prepared me to collaborate with diverse teams in industry settings, where coordination and adaptability are critical.
+As I complete my Bachelor of Science in Computer Science at Southern New Hampshire University, this ePortfolio serves as both an academic capstone and a professional introduction. Throughout the program, I have built a strong foundation in software engineering, databases, data structures, algorithms, and secure coding, while also developing the collaboration and communication skills necessary to succeed in industry.
 
-Another area of growth has been my ability to communicate with stakeholders. Whether writing clear technical documentation, conducting a code review walkthrough, or translating customer needs into functional requirements, I have learned how to present technical information in a way that is accessible and useful. This skill has been strengthened through coursework where I designed database schemas, produced system design documents, and refined requirements based on feedback from simulated clients.
+Working in Agile and Scrum environments taught me how to contribute to team goals, lead ceremonies, and adapt quickly to feedback. I gained experience translating stakeholder needs into clear technical requirements and producing maintainable solutions. From implementing efficient data structures to designing modular middleware for a full stack application, I learned to prioritize clarity, scalability, and security in my work. My embedded systems and secure coding projects further strengthened my ability to write reliable, safe software under real constraints.
 
-The program also gave me a strong foundation in data structures and algorithms, software engineering, databases, and security. For example, in my algorithms and data structures coursework, I implemented different approaches such as vectors, hash tables, and binary search trees to efficiently store and retrieve course data. In embedded systems, I worked with Raspberry Pi hardware to manage UART and GPIO functionality, which taught me the importance of real-time constraints and system reliability. In secure coding, I applied principles of input validation, exception handling, and unit testing to ensure that software was not only functional but also safe. These experiences combined to give me a mindset that considers performance, maintainability, and security together when designing solutions.
+This portfolio highlights three enhanced artifacts in software engineering, algorithms and data structures, and databases that collectively demonstrate my technical range. Together, they reflect my growth as a developer who can solve problems thoughtfully and work effectively across the software development lifecycle. Completing this program while working full time also taught me resilience, time management, and a commitment to continuous learning, qualities I will carry into my career as a computer scientist.
 
-This portfolio brings together three enhanced artifacts that showcase these skills in practice. My software engineering enhancement highlights the importance of modular middleware and maintainable backend architecture. My algorithms and data structures enhancement demonstrates efficient data handling through multiple implementations. My database enhancement emphasizes proper schema design and data validation to ensure consistency and accuracy. Collectively, these artifacts show the breadth of my abilities and reflect the way I approach problem-solving: by prioritizing clarity, scalability, and security.
+---
 
-Ultimately, completing this program while working full-time has taught me perseverance, time management, and the value of continuous improvement. This ePortfolio reflects not only my technical knowledge but also my professional readiness. It serves as both an academic milestone and a career tool—one that demonstrates to future employers that I am capable, adaptable, and eager to contribute as a computer scientist.
-
-**Quick links**  
-- 👉 [Professional Self‑Assessment](/pages/self-assessment.html)  
-- 🧩 [Artifacts & Narratives](/pages/artifacts.html)  
+## Quick Links
+- 👉 [Professional Self-Assessment](/pages/self-assessment.html)  
+- 🧩 [Artifacts and Narratives](/pages/artifacts.html)  
 - 🎥 [Code Review Video](/pages/code-review.html)  
-- ⬇️ [Downloads (original/enhanced files, Word docs, zips)](/downloads/)  
-
-> Tip: If a link doesn't work locally, publish to GitHub Pages first.
+- ⬇️ [Downloads (original and enhanced files, Word docs, zips)](/downloads/)  
