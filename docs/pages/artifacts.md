@@ -4,25 +4,26 @@ title: Artifacts & Narratives
 permalink: /pages/artifacts.html
 ---
 
-## Artifacts & Narratives  
+
 
 This section of my ePortfolio highlights three enhanced artifacts that represent core areas of computer science: **software design and engineering, algorithms and data structures, and databases**. All three artifacts originate from my CS 465 full stack project, *Travlr Getaways*, a MEAN stack travel booking application. Each artifact has been improved to showcase my growth in applying industry best practices and delivering professional-quality code.  
 
+![MEAN Stack Diagram](/CS499-ePortfolio/assets/images/mean_stack_diagram.png)
 ---
 
-### 📌 Software Design & Engineering  
+### Software Design & Engineering  
 **[View Narrative →](artifact-software.html)**  
 Refactored the Express server entry point into modular middleware, improving maintainability, readability, and security. Demonstrates my ability to structure back-end applications for clarity and scalability.  
 
 ---
 
-### 📌 Algorithms & Data Structures  
+### Algorithms & Data Structures  
 **[View Narrative →](artifact-algorithms.html)**  
 Enhanced the Angular `Trip` interface with stronger typing and alignment to the database schema. Highlights my understanding of data structures, type safety, and consistency across the full stack.  
 
 ---
 
-### 📌 Databases  
+### Databases  
 **[View Narrative →](artifact-databases.html)**  
 Upgraded the MongoDB `Trip` schema by converting weakly typed fields to numbers, adding indexing, and enforcing validation. Demonstrates my ability to design efficient, reliable, and production-ready database models.  
 
