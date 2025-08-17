@@ -140,6 +140,46 @@ pre {
   border: 1px solid rgba(255,255,255,0.1);
 }
 
+/* === Inline code override (beats Minima defaults) === */
+
+/* Inline code in common contexts */
+p code,
+li code,
+h1 code, h2 code, h3 code, h4 code,
+blockquote code,
+table code,
+a code,
+strong code, em code,
+figcaption code,
+dd code, dt code,
+.summary code,
+.small code,
+code.highlighter-rouge {
+  background: rgba(32, 227, 255, 0.10) !important; /* subtle cyan glass */
+  color: #20e3ff !important;                       /* neon text */
+  border: 1px solid rgba(32, 227, 255, 0.25) !important;
+  padding: .15em .35em !important;
+  border-radius: .35em !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08) inset;
+}
+
+/* Make sure block code stays dark and distinct */
+pre,
+.highlight {
+  background: rgba(10, 15, 20, 0.92) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  border-radius: 12px !important;
+}
+
+pre code,
+.highlight code {
+  background: transparent !important; /* avoid double backgrounds */
+  color: #eaf2f8;
+}
+
+/* If Minima sets a global pale background on code, nuke it */
+code { background: none; } /* baseline */
+
 
 
 
