@@ -6,7 +6,11 @@ permalink: /pages/artifact-software.html
 
 ## Overview
 
-This artifact is the Express server entry point for my CS 465 full stack project. The original `app.js` contained routing, configuration, and error handling in one file. The enhanced version refactors the server into smaller modules and centralizes configuration.
+The artifact comes from my CS 465 full stack project, Travlr Getaways, a travel booking web application built using the MEAN stack (MongoDB, Express, Angular, Node.js). The goal of the project was to create a functional travel site where users could view available trips, explore details, and manage bookings through a modern web interface.
+
+At the heart of this system was the Express server, specifically the app.js file, which acted as the entry point for routing, configuration, and middleware. In its original state, this file was monolithic: it contained routing logic, error handling, middleware setup, and environment configuration all in one place. While functional for a small demo project, this structure lacked scalability, clarity, and maintainability.
+
+The enhanced version presented here refactors the server by separating concerns into dedicated modules for middleware, logging, error handling, and CORS. This improves maintainability, security, and readability while preserving the original project functionality.
 
 ## Why I Included It
 
@@ -42,8 +46,10 @@ var apiRouter = require('./app_api/routes/index');
 
 // ... middleware, routes, and error handlers all configured here ...
 {% endhighlight %}
-
 </details>
+
+**What this shows:**  
+This original file mixed routing, configuration, middleware, and error handling in one place. It worked, but it was hard to maintain, insecure for production, and not modular.  
 
 **View full file in repo:**  
 - [Original `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/original/app.js)
@@ -96,8 +102,13 @@ app.use(handleGeneralError);
 
 module.exports = app;
 {% endhighlight %}
-
 </details>
+
+**What’s better now:**  
+The enhanced version separates concerns into different modules:  
+- Middleware like logging, CORS, and error handling live in their own files  
+- Routes are preserved but clearly separated  
+- The server is easier to read, extend, and secure  
 
 **View full files in repo:**  
 - [Enhanced `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/app.js)  
@@ -109,8 +120,11 @@ module.exports = app;
 
 ## Key Middleware Excerpts
 
+Each middleware file demonstrates a specific improvement.
+
+### logger.js  
 <details>
-  <summary><strong>logger.js</strong></summary>
+  <summary><strong>Show code</strong></summary>
 
 {% highlight javascript %}
 const fs = require('fs');
@@ -124,11 +138,16 @@ const logStream = fs.createWriteStream(
 
 module.exports = morgan('combined', { stream: logStream });
 {% endhighlight %}
-
 </details>
 
+**Why this matters:**  
+Logs are now written to a file (`logs/access.log`) instead of only console output, which is production-ready and helps with debugging.
+
+---
+
+### cors.js  
 <details>
-  <summary><strong>cors.js</strong></summary>
+  <summary><strong>Show code</strong></summary>
 
 {% highlight javascript %}
 module.exports = (req, res, next) => {
@@ -138,11 +157,16 @@ module.exports = (req, res, next) => {
   next();
 };
 {% endhighlight %}
-
 </details>
 
+**Why this matters:**  
+Cross-Origin Resource Sharing is now configurable via environment variables, making the server safer for deployment.
+
+---
+
+### errorHandler.js  
 <details>
-  <summary><strong>errorHandler.js</strong></summary>
+  <summary><strong>Show code</strong></summary>
 
 {% highlight javascript %}
 const createError = require('http-errors');
@@ -165,8 +189,10 @@ function handleGeneralError(err, req, res, next) {
 
 module.exports = { handleUnauthorized, handleNotFound, handleGeneralError };
 {% endhighlight %}
-
 </details>
+
+**Why this matters:**  
+Errors are handled gracefully and consistently, returning structured JSON instead of vague messages, which improves security and debugging.
 
 ---
 
