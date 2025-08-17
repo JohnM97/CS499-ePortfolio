@@ -1,9 +1,13 @@
 title: CS 499 ePortfolio — John Munguia
 description: Capstone ePortfolio showcasing Software Design & Engineering, Algorithms & Data Structures, and Databases enhancements.
-theme: minima
 
 url: "https://johnm97.github.io"
 baseurl: "/CS499-ePortfolio"
+
+# Use GitHub Pages' Hacker theme
+remote_theme: pages-themes/hacker@v0.2.0
+plugins:
+  - jekyll-remote-theme
 
 # Show these pages in the top navigation, in this order
 header_pages:
@@ -11,11 +15,6 @@ header_pages:
   - pages/self-assessment.md
   - pages/artifacts.md
   - pages/code-review.md
-
-minima:
-  social_links:
-    - { platform: github, user_url: "https://github.com/JohnM97" }
-  skin: auto
 
 markdown: kramdown
 highlighter: rouge
