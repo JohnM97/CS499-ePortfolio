@@ -3,9 +3,8 @@ layout: home
 title: Portfolio Overview
 ---
 
-# CS 499 ePortfolio — John Munguia
+### Introduction and Professional Self-Assessment
 
-## Professional Self-Assessment (Introduction)
 
 As I complete my Bachelor of Science in Computer Science at Southern New Hampshire University, this ePortfolio serves as both an academic capstone and a professional introduction. Throughout the program, I have built a strong foundation in software engineering, databases, data structures, algorithms, and secure coding, while also developing the collaboration and communication skills necessary to succeed in industry.
 
