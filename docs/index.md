@@ -3,6 +3,14 @@ layout: home
 title: Portfolio Overview
 ---
 
+<div style="margin: 0 0 1rem 0; font-size: 0.95rem;">
+  <a href="{{ site.baseurl }}/">Home</a> ·
+  <a href="{{ site.baseurl }}/pages/self-assessment.html">Professional Self-Assessment</a> ·
+  <a href="{{ site.baseurl }}/pages/artifacts.html">Artifacts & Narratives</a> ·
+  <a href="{{ site.baseurl }}/pages/code-review.html">Code Review</a>
+</div>
+
+
 ## Introduction
 
 
