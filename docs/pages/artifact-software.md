@@ -46,7 +46,7 @@ var apiRouter = require('./app_api/routes/index');
 </details>
 
 **View full file in repo:**  
-- Original `app.js`: https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/original/app.js
+- [Original `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/original/app.js)
 
 ---
 
@@ -100,10 +100,10 @@ module.exports = app;
 </details>
 
 **View full files in repo:**  
-- Enhanced `app.js`: https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/app.js  
-- `middleware/logger.js`: https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/logger.js  
-- `middleware/cors.js`: https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/cors.js  
-- `middleware/errorHandler.js`: https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/errorHandler.js
+- [Enhanced `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/app.js)  
+- [middleware/logger.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/logger.js)  
+- [middleware/cors.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/cors.js)  
+- [middleware/errorHandler.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/errorHandler.js)
 
 ---
 
