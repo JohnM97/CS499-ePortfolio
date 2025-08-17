@@ -77,3 +77,47 @@ body{
     url(#{$bg-url}) no-repeat center center fixed;
   background-size: cover;
 }
+
+/* Fix header/nav bar */
+.site-header {
+  background: rgba(20, 26, 34, 0.85);   /* glassy dark */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 0.6rem 0;   /* add breathing room */
+}
+
+/* Space the links better */
+.site-nav .page-link {
+  color: #eaf2f8;
+  margin: 0 1.2rem;
+  font-weight: 500;
+}
+.site-nav .page-link:hover {
+  color: #20e3ff;
+  text-decoration: none;
+}
+
+.page-content {
+  margin-top: 2rem; /* pushes everything down */
+}
+
+.site-nav .page-link {
+  position: relative;
+}
+.site-nav .page-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #20e3ff;
+  transition: width 0.3s ease;
+}
+.site-nav .page-link:hover::after {
+  width: 100%;
+}
+
+
+
