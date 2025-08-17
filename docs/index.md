@@ -1,5 +1,6 @@
 ---
-title: Home
+layout: home
+title: Portfolio Overview
 ---
 
 # CS 499 ePortfolio — John Munguia
