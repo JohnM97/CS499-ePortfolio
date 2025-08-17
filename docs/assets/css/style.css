@@ -1,1 +1,25 @@
+/* Full-site background */
+html, body {
+  height: 100%;
+}
+body {
+  background: url('{{ site.baseurl }}/assets/images/background-theme.png')
+              no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Optional: add a soft backdrop to page content for readability */
+.site-content,
+.page-content,
+.wrapper {
+  background: rgba(15, 18, 22, 0.72); /* subtle dark glass */
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+/* Optional: headings pop a bit on dark art */
+h1, h2, h3 {
+  color: #eaf6ff;
+}
 
