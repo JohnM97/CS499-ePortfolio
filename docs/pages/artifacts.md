@@ -8,7 +8,7 @@ permalink: /pages/artifacts.html
 
 This section of my ePortfolio highlights three enhanced artifacts that represent core areas of computer science: **software design and engineering, algorithms and data structures, and databases**. All three artifacts originate from my CS 465 full stack project, *Travlr Getaways*, a MEAN stack travel booking application. Each artifact has been improved to showcase my growth in applying industry best practices and delivering professional-quality code.  
 
-![MEAN Stack Diagram](/assets/images/mean_stack_diagram.png)
+![MEAN Stack Diagram]({{ site.baseurl }}/assets/images/mean_stack_diagram.png)
 *Figure: Architecture of the MEAN stack used in the Travlr Booking project.*
 ---
 
