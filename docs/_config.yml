@@ -18,5 +18,6 @@ minima:
   skin: auto
 
 markdown: kramdown
+highlighter: rouge
 kramdown:
   input: GFM
