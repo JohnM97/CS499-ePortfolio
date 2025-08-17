@@ -1,0 +1,12 @@
+title: CS 499 ePortfolio — John Munguia
+description: Capstone ePortfolio showcasing Software Design & Engineering, Algorithms & Data Structures, and Databases enhancements.
+theme: minima
+# Minima options
+minima:
+  social_links:
+    - { platform: github, user_url: "https://github.com/JohnM97" }
+  skin: auto
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
