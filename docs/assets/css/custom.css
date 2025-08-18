@@ -25,22 +25,23 @@
 
 /* === custom.css === */
 
-/* Change all lime green highlights to aqua */
+/* Change lime green highlights to light aqua */
 h1, h2, h3, h4, h5, h6,
 a,
 .header-nav .btn,
 nav a,
 strong {
-  color: #00ffff !important; /* pure aqua */
+  color: #4ef7f7 !important; /* light aqua */
 }
 
-/* Aqua hover effect for links & buttons */
+/* Hover effect a little deeper aqua so it stands out */
 a:hover,
 .header-nav .btn:hover {
-  color: #40e0d0 !important; /* turquoise (a softer aqua) */
+  color: #00d4d4 !important; /* slightly darker aqua */
 }
 
 /* Optional: adjust horizontal rules / separators */
 hr {
-  border-color: #00ffff !important;
+  border-color: #4ef7f7 !important;
 }
+
