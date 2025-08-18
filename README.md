@@ -1,5 +1,5 @@
-# cs465-fullstack
-CS-465 Full Stack Development with MEAN
+# Travlr Getaways
+Full Stack Development with MEAN
 
 Throughout this full stack project, I worked with several types of frontend development including basic Express HTML, standard JavaScript, and Angular as a Single Page Application (SPA). Early in the project, the Express HTML pages were simple, traditional server-rendered pages. Later, using Angular allowed for a much richer user experience where data could update dynamically without reloading the page. This shift made the application much faster and more modern. On the backend, we used a NoSQL MongoDB database because its flexible, document-based structure made it easy to store and manage data like trips, users, and authentication tokens without needing a fixed schema.
 
