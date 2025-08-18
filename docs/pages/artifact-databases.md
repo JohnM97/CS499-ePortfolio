@@ -3,7 +3,7 @@ layout: page
 title: Database Management
 permalink: /pages/artifact-databases.html
 ---
-
+![Databases Banner]({{ site.baseurl }}/assets/images/database_banner.png)
 ## Overview
 
 This artifact comes from the **back end** of *Travlr Getaways*. The `travlr.js` file defines the MongoDB/Mongoose model that powers trip data across the app.
