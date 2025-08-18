@@ -3,3 +3,5 @@ description: "Capstone ePortfolio showcasing Software Design & Engineering, Algo
 remote_theme: pages-themes/hacker@v0.2.0
 plugins:
   - jekyll-remote-theme
+include:
+  - assets/css/custom.css
