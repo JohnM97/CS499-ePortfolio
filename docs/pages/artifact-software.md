@@ -4,30 +4,38 @@ title: Software Design & Engineering
 permalink: /pages/artifact-software.html
 ---
 
-## Overview
+## Overview  
 
-The artifact comes from my CS 465 full stack project, Travlr Getaways, a travel booking web application built using the MEAN stack (MongoDB, Express, Angular, Node.js). The goal of the project was to create a functional travel site where users could view available trips, explore details, and manage bookings through a modern web interface.
+This artifact comes from the **Travlr Getaways** full stack application in CS 465. The application’s back end is built with **Node.js and Express**, serving data from MongoDB to the Angular front end.  
 
-At the heart of this system was the Express server, specifically the `app.js` file, which acted as the entry point for routing, configuration, and middleware. In its original state, this file was monolithic: it contained routing logic, error handling, middleware setup, and environment configuration all in one place. While functional for a small demo project, this structure lacked scalability, clarity, and maintainability.
+Originally, the server’s `app.js` file contained **all routing, configuration, logging, and error handling in one file**. While functional, this monolithic approach made the server hard to maintain and extend.  
 
-The enhanced version presented here refactors the server by separating concerns into dedicated modules for middleware, logging, error handling, and CORS. This improves maintainability, security, and readability while preserving the original project functionality.
-
-## Why I Included It
-
-This artifact shows my ability to improve maintainability, readability, and security in a real codebase. It demonstrates modular middleware, separation of concerns, and production-friendly logging and error handling.
-
-## Enhancement Focus
-
-- Broke the monolithic `app.js` into focused modules
-- Moved CORS, logging, and error handling to dedicated middleware
-- Kept sensitive or environment-specific settings in `.env`
-- Preserved routes and behavior while reducing coupling
+The enhanced version demonstrates **software engineering best practices** by refactoring the Express server into **modular middleware**, centralizing configuration, and improving error handling. This ensures a cleaner structure, better maintainability, and production readiness.  
 
 ---
 
-## Before vs. After
+## Why I Included It  
 
-### Before (original `app.js` excerpt)
+This artifact highlights my ability to:  
+- Apply **modular software design principles** for maintainability  
+- Use **separation of concerns** to reduce coupling in a codebase  
+- Add **operational improvements** such as logging, CORS enforcement, and error handling  
+- Prepare a real application for **scalable, production-level deployment**  
+
+---
+
+## Enhancement Focus  
+
+- Extracted cross-cutting concerns into a dedicated `middleware/` directory  
+- Standardized error handling with `handleUnauthorized`, `handleNotFound`, and `handleGeneralError`  
+- Centralized configuration (CORS origin, log path, error responses) instead of hardcoding values  
+- Preserved route functionality while making the server easier to test, monitor, and extend  
+
+---
+
+## Before vs. After  
+
+### Before (original `app.js` excerpt)  
 
 <details>
   <summary><strong>Show original excerpt</strong></summary>
@@ -46,17 +54,21 @@ var apiRouter = require('./app_api/routes/index');
 
 // ... middleware, routes, and error handlers all configured here ...
 {% endhighlight %}
+
 </details>
 
-**What this shows:**  
-This original file mixed routing, configuration, middleware, and error handling in one place. It worked, but it was hard to maintain, insecure for production, and not modular.  
+**What’s wrong here?**  
+- All middleware and error handling live in one file, making `app.js` hard to maintain.  
+- Logging was inline with no dedicated configuration.  
+- Error handling was scattered and inconsistent.  
+- No centralized CORS handling or environment-driven configuration.  
 
 **View full file in repo:**  
-- [Original `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/original/app.js)
+- [Original `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/original/app.js)  
 
 ---
 
-### After (enhanced `app.js` excerpt)
+### After (enhanced `app.js` excerpt)  
 
 <details>
   <summary><strong>Show enhanced excerpt</strong></summary>
@@ -102,29 +114,27 @@ app.use(handleGeneralError);
 
 module.exports = app;
 {% endhighlight %}
+
 </details>
 
-**What’s better now:**  
-The enhanced version separates concerns into different modules:  
-- Middleware like logging, CORS, and error handling live in their own files  
-- Routes are preserved but clearly separated  
-- The server is easier to read, extend, and secure  
+**How it’s better now:**  
+- `app.js` is now a clean composition of middleware and routes.  
+- Cross-cutting concerns live in dedicated modules (`logger.js`, `cors.js`, `errorHandler.js`).  
+- Errors are consistently handled in a unified flow (401 → 404 → 500).  
+- Environment variables (`.env`) control sensitive settings like allowed origins.  
 
 **View full files in repo:**  
 - [Enhanced `app.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/app.js)  
 - [middleware/logger.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/logger.js)  
 - [middleware/cors.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/cors.js)  
-- [middleware/errorHandler.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/errorHandler.js)
+- [middleware/errorHandler.js](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/software/enhanced/middleware/errorHandler.js)  
 
 ---
 
-## Key Middleware Excerpts
+## Key Middleware Excerpts  
 
-Each middleware file demonstrates a specific improvement.
-
-### logger.js  
 <details>
-  <summary><strong>Show code</strong></summary>
+  <summary><strong>logger.js</strong></summary>
 
 {% highlight javascript %}
 const fs = require('fs');
@@ -138,16 +148,11 @@ const logStream = fs.createWriteStream(
 
 module.exports = morgan('combined', { stream: logStream });
 {% endhighlight %}
+
 </details>
 
-**Why this matters:**  
-Logs are now written to a file (`logs/access.log`) instead of only console output, which is production-ready and helps with debugging.
-
----
-
-### cors.js  
 <details>
-  <summary><strong>Show code</strong></summary>
+  <summary><strong>cors.js</strong></summary>
 
 {% highlight javascript %}
 module.exports = (req, res, next) => {
@@ -157,16 +162,11 @@ module.exports = (req, res, next) => {
   next();
 };
 {% endhighlight %}
+
 </details>
 
-**Why this matters:**  
-Cross-Origin Resource Sharing is now configurable via environment variables, making the server safer for deployment.
-
----
-
-### errorHandler.js  
 <details>
-  <summary><strong>Show code</strong></summary>
+  <summary><strong>errorHandler.js</strong></summary>
 
 {% highlight javascript %}
 const createError = require('http-errors');
@@ -189,19 +189,23 @@ function handleGeneralError(err, req, res, next) {
 
 module.exports = { handleUnauthorized, handleNotFound, handleGeneralError };
 {% endhighlight %}
-</details>
 
-**Why this matters:**  
-Errors are handled gracefully and consistently, returning structured JSON instead of vague messages, which improves security and debugging.
+</details>
 
 ---
 
-## Reflection
+## Reflection  
 
-Refactoring into modules made the server easier to read and safer to extend. Centralizing CORS and logging improved clarity and ensured consistent behavior across routes. The biggest challenge was preserving behavior while moving logic into separate files. I validated changes by running the app locally, confirming route responses, and checking the access log and error responses. This work improved maintainability and aligns with professional standards for Express applications.
+Refactoring the Express server reinforced the value of **separation of concerns**. By pulling out middleware for logging, CORS, and error handling, I made the application more maintainable and production-ready.  
 
-## Course Outcomes Demonstrated
+The biggest challenge was ensuring the refactor didn’t break existing routes. I validated changes by running the app locally, testing all API endpoints, and checking both the logs and error responses.  
 
-- Apply software engineering and development principles for modular, maintainable design  
-- Integrate security-minded practices by externalizing environment-specific settings and centralizing error handling  
-- Produce clear, professional-quality code with focused modules and consistent middleware patterns
+This process improved **maintainability, observability, and reliability** of the server—qualities that are essential in professional software engineering.  
+
+---
+
+## Course Outcomes Demonstrated  
+
+- Apply **software engineering principles** for modular and maintainable design  
+- Integrate **security and configuration best practices** in server architecture  
+- Deliver **production-quality code** through modularization, logging, and error handling  
