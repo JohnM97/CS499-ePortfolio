@@ -104,7 +104,7 @@ this.upcomingTrips$ = combineLatest([
 
 ## Reflection
 
-This enhancement demonstrates how **algorithms (filter/sort/search)** and **data structures (typed interfaces and view models)** improve both code quality and user experience. I validated correctness by confirming only future trips render, the order is ascending by date, and search behaves as expected. These changes directly align with the intent of the Algorithms & Data Structures milestone. :contentReference[oaicite:3]{index=3}
+This enhancement demonstrates how **algorithms (filter/sort/search)** and **data structures (typed interfaces and view models)** improve both code quality and user experience. I validated correctness by confirming only future trips render, the order is ascending by date, and search behaves as expected. These changes directly align with the intent of the Algorithms & Data Structures milestone. 
 
 ---
 
@@ -112,5 +112,6 @@ This enhancement demonstrates how **algorithms (filter/sort/search)** and **data
 
 - Apply **algorithmic principles** to design and evaluate computing solutions in real applications  
 - Strengthen **data integrity and type safety** through structured models and view models  
-- Deliver **maintainable, testable** front-end code using observable pipelines  
+- Deliver **maintainable, testable** front-end code using observable pipelines
+- 
 
