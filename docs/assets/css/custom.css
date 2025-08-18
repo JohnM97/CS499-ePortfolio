@@ -23,26 +23,24 @@
   color: #0f0;
 }
 
-/* Change lime green to teal throughout */
+/* === custom.css === */
+
+/* Change all lime green highlights to aqua */
 h1, h2, h3, h4, h5, h6,
 a,
-strong,
 .header-nav .btn,
-#header nav a,
-#header h1,
-#header h2,
-#footer a {
-  color: #008080 !important;
+nav a,
+strong {
+  color: #00ffff !important; /* pure aqua */
 }
 
-/* Teal highlights for buttons */
-.btn {
-  border-color: #008080 !important;
-  color: #008080 !important;
+/* Aqua hover effect for links & buttons */
+a:hover,
+.header-nav .btn:hover {
+  color: #40e0d0 !important; /* turquoise (a softer aqua) */
 }
 
-.btn:hover {
-  background: #008080 !important;
-  color: #111 !important; /* contrast */
+/* Optional: adjust horizontal rules / separators */
+hr {
+  border-color: #00ffff !important;
 }
-
