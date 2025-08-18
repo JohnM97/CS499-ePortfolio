@@ -61,7 +61,7 @@ export interface Trip {
 - Weak typing increases risk of errors when binding data in Angular templates.  
 
 **View full file in repo:**  
-- [Original `trip.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip.ts)  
+- [Original `trip.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing.component.ts)  
 
 ---
 
@@ -92,7 +92,7 @@ export interface Trip {
 - Reduces type mismatches across the stack, improving reliability and maintainability.  
 
 **View full file in repo:**  
-- [Enhanced `trip.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip.ts)  
+- [Enhanced `trip.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing.component.ts)  
 
 ---
 
