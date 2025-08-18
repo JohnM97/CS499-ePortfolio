@@ -9,7 +9,7 @@ permalink: /pages/artifact-algorithms.html
 This artifact comes from the **Angular front end** of *Travlr Getaways*. The `trip-listing.component.ts` is responsible for retrieving and presenting trips.  
 The enhanced version demonstrates **algorithmic processing** and **stronger data structures** by filtering to **upcoming trips**, performing a **stable chronological sort**, and introducing a **search** control with debouncing. The component now exposes an **observable pipeline** suitable for the async pipe, backed by pure utility functions and an immutable view model.
 
-These changes reflect the goals described in my narrative (filter to upcoming trips; sort chronologically; enforce proper types for numeric fields). :contentReference[oaicite:1]{index=1}
+These changes reflect the goals described in my narrative (filter to upcoming trips; sort chronologically; enforce proper types for numeric fields).
 
 ---
 
@@ -31,7 +31,7 @@ This artifact shows that I can:
 - **Error & loading states**: the stream surfaces errors and sets loading flags  
 - **Cleaner lifecycle**: the async pipe replaces manual subscription/unsubscription
 
-These decisions also satisfy the guideline to **make it easy to see both the original and enhanced work** within the ePortfolio. :contentReference[oaicite:2]{index=2}
+These decisions also satisfy the guideline to **make it easy to see both the original and enhanced work** within the ePortfolio. 
 
 ---
 
