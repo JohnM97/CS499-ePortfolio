@@ -4,23 +4,11 @@ description: Capstone ePortfolio showcasing Software Design & Engineering, Algor
 url: "https://johnm97.github.io"
 baseurl: "/CS499-ePortfolio"
 
-# Use GitHub Pages' Hacker theme
 remote_theme: pages-themes/hacker@v0.2.0
 plugins:
   - jekyll-remote-theme
-
-# Show these pages in the top navigation, in this order
-header_pages:
-  - index.md
-  - pages/self-assessment.md
-  - pages/artifacts.md
-  - pages/code-review.md
 
 markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
-
-sass:
-  style: compressed
-
