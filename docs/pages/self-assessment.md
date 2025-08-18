@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: default
 title: Professional Self-Assessment
 permalink: /pages/self-assessment.html
 ---
+
+{% include nav.html %}
 
 As I complete my Bachelor of Science in Computer Science at Southern New Hampshire University, this ePortfolio represents the culmination of my academic work and a foundation for my professional career. Developing this portfolio has allowed me to showcase not only the technical skills I gained throughout the program but also the professional values and goals that shape the kind of developer I aim to be. Completing the capstone course and enhancing my artifacts has reinforced how far I have come in applying theory to practice and prepared me to contribute meaningfully in a professional software engineering role.
 
