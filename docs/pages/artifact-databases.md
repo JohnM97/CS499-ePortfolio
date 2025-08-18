@@ -9,7 +9,7 @@ permalink: /pages/artifact-databases.html
 This artifact comes from the **back end** of *Travlr Getaways*. The `travlr.js` file defines the MongoDB/Mongoose model that powers trip data across the app.
 
 Originally, the schema stored numeric values like `length` and `perPerson` as **strings**, and lacked stronger validation and indexing. This created risk for data inconsistencies and slower queries at scale. The first enhancement corrected the types, added validators, and enabled timestamps. The **new enhanced** version below goes further by adding **uniqueness**, **compound and text indexes**, **custom validators**, **virtuals**, and a **clean JSON transform**—a robust design suitable for production APIs.  
-*(This aligns with my narrative’s focus on stricter types, required fields, defaults, and indexing.)*
+
 
 ---
 
@@ -57,8 +57,7 @@ module.exports = Trip;
 - Minimal validation; limited indexing beyond single-field lookups  
 
 **View full file in repo:**  
-- Original `travlr.js` (string types): *(your repo path)*  
-- Source reference: :contentReference[oaicite:4]{index=4}
+- [Original `travlr.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/original/travlr.js)
 
 ---
 
