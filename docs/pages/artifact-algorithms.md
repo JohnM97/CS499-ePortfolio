@@ -3,7 +3,7 @@ layout: page
 title: Algorithms & Data Structures
 permalink: /pages/artifact-algorithms.html
 ---
-
+![Algorithms Banner]({{ site.baseurl }}/assets/images/algorithms_banner.png)
 ## Overview
 
 This artifact comes from the **Angular front end** of *Travlr Getaways*. The `trip-listing.component.ts` is responsible for retrieving and presenting trips.  
