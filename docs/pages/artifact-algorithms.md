@@ -6,106 +6,127 @@ permalink: /pages/artifact-algorithms.html
 
 ## Overview  
 
-This artifact also comes from the **Travlr Getaways** full stack application in CS 465. The Angular front end consumed data from MongoDB through Express APIs, and trips were displayed dynamically to users.  
+This artifact comes from the **Angular front end** of the *Travlr Getaways* full stack project in CS 465. The `trip-listing.component.ts` file is responsible for retrieving and displaying trip data to the user.  
 
-In the original implementation, the Angular `trip-listing-component.ts` component handled trips using inconsistent typing (e.g., storing `length` and `perPerson` as strings). This caused inefficiencies when displaying or sorting data.  
+In the original version, the component lacked strong data handling — all trips were displayed without filtering, and fields like `length` and `perPerson` were typed as strings. This made it difficult to process data effectively, perform calculations, or sort results reliably.  
 
-The enhanced version applies **stronger typing** in `trip-listing-component.ts`, ensuring consistency with the improved database schema. This creates a more reliable data flow from database → API → front end and demonstrates how **data structures and algorithms** align across the stack.  
+The enhanced version applies **algorithms and data structure principles** by:  
+- Filtering trips so only **upcoming trips** are displayed  
+- Sorting trips **chronologically** by start date  
+- Updating the `Trip` interface so fields like `length` and `perPerson` are typed as numbers instead of strings  
+
+These changes improved both **usability** and **data reliability**, showing how algorithmic improvements can strengthen application behavior.  
 
 ---
 
 ## Why I Included It  
 
-This artifact highlights my ability to:  
-- Design consistent **data structures** across multiple layers of a full stack app  
-- Improve type safety and reduce bugs in the Angular front end  
-- Align front-end models with back-end schemas for scalability and reliability  
+This artifact demonstrates my ability to:  
+- Apply **sorting and filtering algorithms** in a real front-end application  
+- Improve type safety and enforce consistency in TypeScript models  
+- Enhance the user experience by displaying accurate and relevant data  
 
 ---
 
 ## Enhancement Focus  
 
-- Changed `length` and `perPerson` from `string` to **number** in the component’s `Trip` interface  
-- Matched the front-end interface with the updated Mongoose schema  
-- Ensured consistent typing across the stack → database, server, and client  
-- Preserved existing behavior while strengthening correctness and maintainability  
+- Added **filtering logic** → show only trips with a start date in the future  
+- Added **sorting logic** → order upcoming trips chronologically  
+- Strengthened the `Trip` interface → converted `length` and `perPerson` to numbers  
+- Preserved existing UI functionality while enhancing correctness and maintainability  
 
 ---
 
 ## Before vs. After  
 
-### Before (original `trip-listing-component.ts` excerpt)  
+### Before (original `trip-listing.component.ts` excerpt)  
 
 <details>
   <summary><strong>Show original excerpt</strong></summary>
 
 {% highlight typescript %}
 export interface Trip {
-    _id: string,           
+    _id: string,
     code: string,
     name: string,
-    length: string,         // Stored as string (inefficient)
+    length: string,         // Weak typing
     start: Date,
     resort: string,
-    perPerson: string,      // Stored as string (inefficient)
+    perPerson: string,      // Weak typing
     image: string,
     description: string
+}
+
+ngOnInit(): void {
+  this.tripDataService.getTrips().subscribe(trips => {
+    this.trips = trips;     // No filtering or sorting
+  });
 }
 {% endhighlight %}
 
 </details>
 
 **What’s wrong here?**  
-- `length` and `perPerson` are typed as `string` → cannot perform calculations or numeric sorting without conversion.  
-- Causes inconsistency with the database schema.  
-- Weak typing increases risk of errors when binding data in Angular templates.  
+- Trips are displayed in the order they’re retrieved → no logical sorting.  
+- Past trips are shown even though they’re no longer relevant.  
+- Weak typing (`string` instead of `number`) creates inconsistencies with the database.  
 
 **View full file in repo:**  
-- [Original `trip-listing-component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing-component.ts)  
+- [Original `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing.component.ts)  
 
 ---
 
-### After (enhanced `trip-listing-component.ts` excerpt)  
+### After (enhanced `trip-listing.component.ts` excerpt)  
 
 <details>
   <summary><strong>Show enhanced excerpt</strong></summary>
 
 {% highlight typescript %}
 export interface Trip {
-    _id: string,           
+    _id: string,
     code: string,
     name: string,
-    length: number,        // Now a number for calculations & sorting
+    length: number,        // Strong typing
     start: Date,
     resort: string,
-    perPerson: number,     // Now a number for accurate math
+    perPerson: number,     // Strong typing
     image: string,
     description: string
+}
+
+ngOnInit(): void {
+  this.tripDataService.getTrips().subscribe(trips => {
+    this.trips = trips
+      .filter(trip => new Date(trip.start) > new Date())   // Show only upcoming
+      .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()); // Chronological order
+  });
 }
 {% endhighlight %}
 
 </details>
 
 **How it’s better now:**  
-- `length` and `perPerson` are strongly typed as **numbers**, enabling sorting, filtering, and calculations without conversion.  
-- Matches the improved Mongoose schema in the database.  
-- Reduces type mismatches across the stack, improving reliability and maintainability.  
+- Trips are filtered so users only see relevant, **upcoming trips**.  
+- Sorting ensures trips are displayed **in order of their start date**.  
+- Strong typing prevents mismatches and enables numeric operations without conversion.  
 
 **View full file in repo:**  
-- [Enhanced `trip-listing-component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing-component.ts)  
+- [Enhanced `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing.component.ts)  
 
 ---
 
 ## Reflection  
 
-Enhancing `trip-listing-component.ts` emphasized the importance of **consistent data modeling** between the client and server. By aligning the Angular front end with the improved MongoDB schema, I eliminated type mismatches that could have introduced runtime errors.  
+Enhancing this component highlighted how **algorithms and data structures** impact user experience. Filtering and sorting improved how data is presented, while type safety made the code more reliable and easier to maintain.  
 
-The challenge was ensuring that UI components using the `Trip` model were not broken by the type change. I validated by re-running the Angular app and verifying that trip data displayed correctly and that sorting/filtering worked without type conversion.  
+The challenge was ensuring that the UI updated correctly after applying filtering and sorting. I tested the changes by verifying that only future trips appeared and that they were listed in the correct order.  
+
+This artifact demonstrates the practical application of algorithms to solve real-world problems in a web app.  
 
 ---
 
 ## Course Outcomes Demonstrated  
 
-- Apply **algorithms and data structures** concepts to real-world full stack applications  
-- Strengthen **data integrity** through consistent type enforcement across the stack  
-- Demonstrate **problem-solving skills** by refactoring weak typing into maintainable, scalable code structures  
+- Apply **algorithms and data structures** to improve functionality and performance in applications  
+- Strengthen **data integrity and type safety** through consistent models  
+- Show **problem-solving ability** by refactoring weak, unstructured logic into maintainable, scalable code  
