@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: default
 title: Databases
 permalink: /pages/artifact-databases.html
 ---
+
+{% include nav.html %}
 
 ## Overview  
 
