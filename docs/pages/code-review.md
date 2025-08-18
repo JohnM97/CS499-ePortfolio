@@ -4,7 +4,6 @@ title: Code Review
 permalink: /pages/code-review.html
 ---
 
-{% include nav.html %}
 
 Embed or link your code review video below.
 
