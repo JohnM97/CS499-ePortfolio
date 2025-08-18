@@ -1,17 +1,22 @@
 <style>
-  .site-nav-bar {
+  /* put nav + github button on one row */
+  .topbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin: 1rem 0 2rem;
+    gap: 1rem;
   }
-
-  .site-nav-left .btn {
-    margin-right: .5rem;
+  .topbar .nav-links {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
   }
-
-  .site-nav-right .btn {
-    background: #000;
-    border: 1px solid #444;
+  /* tighten the GitHub section so the button hugs the right */
+  #downloads {
+    margin: 0;
+    padding: 0;
   }
+  #downloads .btn { margin-left: .5rem; }
+  #downloads .btn:first-child { margin-left: 0; }
 </style>
