@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: default
 title: Software Design & Engineering
 permalink: /pages/artifact-software.html
 ---
+
+{% include nav.html %}
 
 ## Overview
 
