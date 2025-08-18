@@ -4,8 +4,6 @@ title: Databases
 permalink: /pages/artifact-databases.html
 ---
 
-{% include nav.html %}
-
 ## Overview  
 
 This artifact comes from the same **Travlr Getaways** project in CS 465, a full stack MEAN application that allows users to browse and book trips. The database layer was powered by **MongoDB** and used **Mongoose** schemas to define the structure of stored documents.  
