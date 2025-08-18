@@ -6,115 +6,108 @@ permalink: /pages/artifact-databases.html
 
 ## Overview  
 
-This artifact comes from the same **Travlr Getaways** project in CS 465, a full stack MEAN application that allows users to browse and book trips. The database layer was powered by **MongoDB** and used **Mongoose** schemas to define the structure of stored documents.  
+This artifact also comes from the **Travlr Getaways** full stack application in CS 465. The back end used MongoDB with Mongoose to store trip information, and the Express API exposed these trips to the Angular front end.  
 
-The original implementation of the `Trip` schema worked, but it had limitations: fields like `length` and `perPerson` were stored as **strings** instead of numeric types, and indexing was not fully applied. This created inefficiencies for querying, sorting, and validation.  
+In the original implementation, the database interaction logic in `travlr.js` was limited in flexibility and stored some values (like `length` and `perPerson`) as strings. This created inefficiencies when querying or aggregating data.  
 
-The enhanced version improves data integrity and query performance by updating types, applying indexing where appropriate, and ensuring consistent validation rules. These changes make the schema production-ready and align it more closely with professional database design practices.  
+The enhanced version improves the Mongoose schema and updates `travlr.js` to ensure **numeric types** for fields like `length` and `perPerson`. This allows more efficient sorting, filtering, and querying directly in the database.  
 
 ---
 
 ## Why I Included It  
 
-This artifact demonstrates my ability to work with **databases and schema design** in a real application context. It shows how I can:  
-- Analyze weaknesses in the original schema  
-- Improve validation, integrity, and performance with better types and indexing  
-- Make database models easier to maintain and query in production environments  
+This artifact highlights my ability to:  
+- Design and maintain efficient **database schemas**  
+- Strengthen data integrity by enforcing proper types at the schema level  
+- Write database interaction logic that is scalable and production-ready  
+- Show how back-end improvements impact the reliability of a full stack application  
 
 ---
 
 ## Enhancement Focus  
 
-- Converted `length` and `perPerson` from strings to **Number** for accurate math operations and sorting  
-- Added **indexes** on key fields like `code` and `name` to speed up search queries  
-- Preserved all existing functionality while making the schema more reliable  
-- Strengthened **data validation** by ensuring required fields are enforced  
+- Changed `length` and `perPerson` in the Mongoose schema from `string` → **Number**  
+- Updated queries in `travlr.js` to work with numeric fields  
+- Improved database consistency with the Angular `Trip` model in the front end  
+- Preserved existing functionality while improving efficiency for calculations and sorting  
 
 ---
 
 ## Before vs. After  
 
-### Before (original `trip.js` schema)  
+### Before (original `travlr.js` excerpt)  
 
 <details>
   <summary><strong>Show original excerpt</strong></summary>
 
 {% highlight javascript %}
-const mongoose = require('mongoose');
-
+// Example schema from original
 const tripSchema = new mongoose.Schema({
-  code: { type: String, required: true, index: true },       
-  name: { type: String, required: true, index: true },       
-  length: { type: String, required: true },                  
-  start: { type: Date, required: true },                     
-  resort: { type: String, required: true },                  
-  perPerson: { type: String, required: true },               
-  image: { type: String, required: true },                   
-  description: { type: String, required: true }              
+  code: { type: String, required: true },
+  name: { type: String, required: true },
+  length: { type: String, required: true },      // stored as string
+  start: { type: Date, required: true },
+  resort: { type: String, required: true },
+  perPerson: { type: String, required: true },   // stored as string
+  image: { type: String, required: true },
+  description: { type: String, required: true }
 });
-
-const Trip = mongoose.model('trips', tripSchema);
-module.exports = Trip;
 {% endhighlight %}
 
 </details>
 
 **What’s wrong here?**  
-- `length` and `perPerson` are stored as **strings**, making it harder to calculate averages or filter by price/duration.  
-- Validation is present, but type enforcement is weak.  
-- Indexing only partially applied (helpful but not optimized).  
+- `length` and `perPerson` were strings → inefficient for math, sorting, or aggregations.  
+- Schema did not enforce numeric data integrity.  
+- Added overhead when sending data to the Angular front end.  
 
 **View full file in repo:**  
-- [Original `trip.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/original/trip.js)  
+- [Original `travlr.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/original/travlr.js)  
 
 ---
 
-### After (enhanced `trip.js` schema)  
+### After (enhanced `travlr.js` excerpt)  
 
 <details>
   <summary><strong>Show enhanced excerpt</strong></summary>
 
 {% highlight javascript %}
-const mongoose = require('mongoose');
-
+// Updated schema
 const tripSchema = new mongoose.Schema({
   code: { type: String, required: true, index: true },
   name: { type: String, required: true, index: true },
-  length: { type: Number, required: true },        // Converted from String to Number
+  length: { type: Number, required: true },      // now a number
   start: { type: Date, required: true },
   resort: { type: String, required: true },
-  perPerson: { type: Number, required: true },     // Converted from String to Number
+  perPerson: { type: Number, required: true },   // now a number
   image: { type: String, required: true },
   description: { type: String, required: true }
-}, { timestamps: true }); // Added auto timestamps
-
-const Trip = mongoose.model('trips', tripSchema);
-module.exports = Trip;
+});
 {% endhighlight %}
 
 </details>
 
 **How it’s better now:**  
-- **Numbers instead of strings** → allows for accurate filtering and math operations (e.g., find trips under $1000).  
-- Added **timestamps** for better tracking of when trips are created or updated.  
-- Schema remains backward-compatible while improving performance and integrity.  
+- Strong typing at the schema level improves reliability.  
+- Numeric values enable sorting and calculations in MongoDB queries.  
+- Front end (Angular) models and back end are aligned.  
+- Easier to scale and maintain.  
 
 **View full file in repo:**  
-- [Enhanced `trip.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/enhanced/trip.js)  
+- [Enhanced `travlr.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/enhanced/travlr.js)  
 
 ---
 
 ## Reflection  
 
-Improving the schema gave me a stronger appreciation for how important **data modeling** is in application design. Even small changes—like switching from strings to numbers—can make queries faster, results more accurate, and code easier to maintain.  
+Enhancing `travlr.js` emphasized how important it is to get **data modeling right at the database layer**. By enforcing numeric types for fields like `length` and `perPerson`, I reduced the risk of inconsistencies and improved query performance.  
 
-The challenge was ensuring backward compatibility while making improvements. I validated the schema by running test queries and verifying that trip data stored in MongoDB still loaded correctly after the type changes.  
+The challenge was ensuring compatibility across the stack after updating the schema. I validated by re-running the Express API and verifying that Angular’s `Trip` component rendered data correctly, including numeric sorting.  
 
 ---
 
 ## Course Outcomes Demonstrated  
 
-- Apply database design principles to improve integrity and performance  
-- Ensure data consistency through strong typing and validation rules  
-- Align schema design with real-world scalability and professional standards  
-
+- Apply **database management principles** to strengthen integrity and efficiency  
+- Align schemas with front-end data models for reliable, scalable applications  
+- Demonstrate **problem-solving skills** by refactoring weak schema design into a robust structure  
