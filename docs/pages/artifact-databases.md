@@ -8,7 +8,7 @@ permalink: /pages/artifact-databases.html
 
 This artifact comes from the **back end** of *Travlr Getaways*. The `travlr.js` file defines the MongoDB/Mongoose model that powers trip data across the app.
 
-Originally, the schema stored numeric values like `length` and `perPerson` as **strings**, and lacked stronger validation and indexing. This created risk for data inconsistencies and slower queries at scale. The first enhancement corrected the types, added validators, and enabled timestamps. The **new enhanced** version below goes further by adding **uniqueness**, **compound and text indexes**, **custom validators**, **virtuals**, and a **clean JSON transform**—a robust design suitable for production APIs.  
+Originally, the schema stored numeric values like `length` and `perPerson` as **strings**, and lacked stronger validation and indexing. This created risk for data inconsistencies and slower queries at scale. The first enhancement corrected the types, added validators, and enabled timestamps. The **new enhanced** version below goes further by adding **compound and text indexes**, **custom validators**, **virtuals**, and a **clean JSON transform**, a robust design suitable for production APIs.  
 
 
 ---
@@ -17,7 +17,7 @@ Originally, the schema stored numeric values like `length` and `perPerson` as **
 
 This artifact demonstrates that I can:
 - Design **robust Mongoose schemas** with strong typing and validation
-- Use **indexes** (unique, compound, text) to support common query patterns
+- Use **indexes** (compound, text) to support common query patterns
 - Improve **API ergonomics** with virtuals and JSON transforms
 - Align the data layer with front-end and API requirements for integrity and performance
 
@@ -85,8 +85,6 @@ const tripSchema = new mongoose.Schema({
 - Fixed numeric types; added validators & `timestamps`  
 - Still missing uniqueness, compound/text indexes, virtuals, and JSON normalization
 
-**Source reference:** :contentReference[oaicite:5]{index=5}
-
 ---
 
 ### New Enhanced Version
@@ -128,7 +126,7 @@ module.exports = Trip;
 
 ## Reflection
 
-Upgrading this schema reinforced how much **database design** impacts application quality. Strong types and validation prevent bad data; indexes make the most common queries fast; and small ergonomics (virtuals, clean JSON) reduce boilerplate in APIs and the front end. I validated the changes by seeding with edge-case data, running common list/detail queries, and confirming that the Angular app continued to render trips correctly with numeric sorting. These improvements directly match my Databases narrative and course outcomes. :contentReference[oaicite:6]{index=6}
+Upgrading this schema reinforced how much **database design** impacts application quality. Strong types and validation prevent bad data; indexes make the most common queries fast; and small ergonomics (virtuals, clean JSON) reduce boilerplate in APIs and the front end. I validated the changes by seeding with edge-case data, running common list/detail queries, and confirming that the Angular app continued to render trips correctly with numeric sorting. These improvements directly match my Databases narrative and course outcomes.
 
 ---
 
