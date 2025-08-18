@@ -13,7 +13,7 @@ Each artifact has been improved to showcase my growth in applying industry best 
 
 ## Software Design & Engineering  
 ![Software Banner]({{ site.baseurl }}/assets/images/software_design_banner.png)  
-**[View Artifact & Narrative →](artifact-software.html)**  
+[View Artifact & Narrative →](artifact-software.html){: .artifact-button}  
 Refactored the Express server entry point in `app.js` into modular middleware, improving maintainability, readability, and security. Demonstrates my ability to structure back-end applications for clarity and scalability.  
 
 ---
