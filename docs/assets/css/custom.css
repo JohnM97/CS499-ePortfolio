@@ -22,3 +22,27 @@
   border: 1px solid #0f0;
   color: #0f0;
 }
+
+/* Change lime green to teal throughout */
+h1, h2, h3, h4, h5, h6,
+a,
+strong,
+.header-nav .btn,
+#header nav a,
+#header h1,
+#header h2,
+#footer a {
+  color: #008080 !important;
+}
+
+/* Teal highlights for buttons */
+.btn {
+  border-color: #008080 !important;
+  color: #008080 !important;
+}
+
+.btn:hover {
+  background: #008080 !important;
+  color: #111 !important; /* contrast */
+}
+
