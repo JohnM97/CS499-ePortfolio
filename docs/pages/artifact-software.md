@@ -3,7 +3,7 @@ layout: page
 title: Software Design & Engineering
 permalink: /pages/artifact-software.html
 ---
-
+![Software Banner]({{ site.baseurl }}/assets/images/software_design_banner.png)
 ## Overview  
 
 This artifact comes from the **Travlr Getaways** full stack application in CS 465. The application’s back end is built with **Node.js and Express**, serving data from MongoDB to the Angular front end.  
