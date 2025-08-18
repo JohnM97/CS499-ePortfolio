@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Portfolio Overview
-permalink: /pages/index.html
 ---
 
 ## Introduction
