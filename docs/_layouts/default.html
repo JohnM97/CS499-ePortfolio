@@ -4,28 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Main Hacker theme stylesheet -->
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+    <!-- Custom teal override stylesheet -->
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
     {% include head-custom.html %}
     {% seo %}
-
-    <style>
-      /* Put nav + GitHub button on a single row */
-      .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        margin: 1rem 0 2rem;
-      }
-      .topbar .nav-links {
-        display: flex;
-        gap: .5rem;
-        flex-wrap: wrap;
-      }
-      /* keep button spacing consistent */
-      .topbar .btn { margin: 0; }
-      .topbar #downloads { margin: 0; padding: 0; }
-    </style>
   </head>
 
   <body>
@@ -36,23 +23,18 @@
         </a>
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
 
-        <!-- SINGLE ROW: nav (left) + GitHub (right) -->
-        <div class="topbar">
+        <!-- Nav bar with buttons (only appears once now) -->
+        <nav class="header-nav" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
           <div class="nav-links">
-            <a class="btn" href="{{ '/' | relative_url }}">Home</a>
-            <a class="btn" href="{{ '/pages/self-assessment.html' | relative_url }}">Professional Self-Assessment</a>
-            <a class="btn" href="{{ '/pages/artifacts.html' | relative_url }}">Artifacts & Narratives</a>
-            <a class="btn" href="{{ '/pages/code-review.html' | relative_url }}">Code Review</a>
+            <a href="{{ '/' | relative_url }}" class="btn">Home</a>
+            <a href="{{ '/pages/self-assessment.html' | relative_url }}" class="btn">Professional Self-Assessment</a>
+            <a href="{{ '/pages/artifacts.html' | relative_url }}" class="btn">Artifacts & Narratives</a>
+            <a href="{{ '/pages/code-review.html' | relative_url }}" class="btn">Code Review</a>
           </div>
-
-          <section id="downloads">
-            {% if site.show_downloads %}
-              <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
-              <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
-            {% endif %}
+          <div class="github-link">
             <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-          </section>
-        </div>
+          </div>
+        </nav>
       </div>
     </header>
 
