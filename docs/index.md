@@ -15,9 +15,3 @@ Working in Agile and Scrum environments taught me how to contribute to team goal
 This portfolio highlights three enhanced artifacts in software engineering, algorithms and data structures, and databases that collectively demonstrate my technical range. Together, they reflect my growth as a developer who can solve problems thoughtfully and work effectively across the software development lifecycle. Completing this program while working full time also taught me resilience, time management, and a commitment to continuous learning, qualities I will carry into my career.
 
 ---
-
-## Quick Links
-- 👉 [Professional Self-Assessment]({{ site.baseurl }}/pages/self-assessment.html)
-- 🧩 [Artifacts and Narratives]({{ site.baseurl }}/pages/artifacts.html)
-- 🎥 [Code Review Video]({{ site.baseurl }}/pages/code-review.html)
-
