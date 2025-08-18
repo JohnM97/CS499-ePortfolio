@@ -2,7 +2,7 @@
 layout: home
 title: Portfolio Overview
 ---
-![Mean Stack Banner]({{ site.baseurl }}/assets/images/mean_stack_diagram.png)
+![Portfolio Overview Banner]({{ site.baseurl }}/assets/images/portfolio_overview.png)
 
 ## Introduction
 
