@@ -1,0 +1,24 @@
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 0 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-links .btn {
+  background: #111;
+  border: 1px solid #0f0;
+  color: #0f0;
+}
+
+.github-link .btn {
+  background: #111;
+  border: 1px solid #0f0;
+  color: #0f0;
+}
