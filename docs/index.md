@@ -14,8 +14,3 @@ This portfolio highlights three enhanced artifacts in software engineering, algo
 
 ---
 
-## Quick Links
-- 👉 [Professional Self-Assessment]({{ site.baseurl }}/pages/self-assessment.html)
-- 🧩 [Artifacts and Narratives]({{ site.baseurl }}/pages/artifacts.html)
-- 🎥 [Code Review Video]({{ site.baseurl }}/pages/code-review.html)
-
