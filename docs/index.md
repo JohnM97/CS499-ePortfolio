@@ -3,7 +3,6 @@ layout: default
 title: Portfolio Overview
 ---
 
-{% include nav.html %}
 
 ## Introduction
 
