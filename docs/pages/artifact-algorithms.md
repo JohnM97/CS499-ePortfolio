@@ -59,7 +59,7 @@ ngOnInit(): void {
 - Weak numeric typing (pre-enhancement) required conversions elsewhere
 
 **View full file in repo:**  
-- [Original `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing-component.ts)
+- [Original `trip-listing-component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing-component.ts)
 
 ---
 
@@ -98,7 +98,7 @@ this.upcomingTrips$ = combineLatest([
 - **Maintainable**: pure helpers + immutable transforms support testing and future changes
 
 **View full file in repo:**  
-- [Enhanced `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing-component.ts)
+- [Enhanced `trip-listing-component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing-component.ts)
 
 ---
 
