@@ -4,127 +4,113 @@ title: Algorithms & Data Structures
 permalink: /pages/artifact-algorithms.html
 ---
 
-## Overview  
+## Overview
 
-This artifact comes from the **Angular front end** of the *Travlr Getaways* project in CS 465. The `trip-listing.component.ts` component retrieves and displays trip data to the user.  
+This artifact comes from the **Angular front end** of *Travlr Getaways*. The `trip-listing.component.ts` is responsible for retrieving and presenting trips.  
+The enhanced version demonstrates **algorithmic processing** and **stronger data structures** by filtering to **upcoming trips**, performing a **stable chronological sort**, and introducing a **search** control with debouncing. The component now exposes an **observable pipeline** suitable for the async pipe, backed by pure utility functions and an immutable view model.
 
-Originally, the component displayed trips without filtering or sorting and relied on weak typing for certain numeric fields (e.g., `length`, `perPerson`). The enhanced version applies **algorithmic improvements** and **stronger data structures** by filtering to **upcoming trips** and sorting them **chronologically**, while aligning the `Trip` interface with numeric types used in the database schema.
-
----
-
-## Why I Included It  
-
-This artifact demonstrates my ability to:  
-- Apply **sorting and filtering algorithms** in a real UI component  
-- Use **TypeScript data structures** (interfaces) to enforce correctness  
-- Improve user experience by presenting **relevant, ordered** results
+These changes reflect the goals described in my narrative (filter to upcoming trips; sort chronologically; enforce proper types for numeric fields). :contentReference[oaicite:1]{index=1}
 
 ---
 
-## Enhancement Focus  
+## Why I Included It
 
-- Added **filtering** for upcoming trips (based on `start` date)  
-- Added **chronological sorting** by start date  
-- Strengthened the `Trip` interface (in the Angular models) to use **number** for numeric fields  
-- Preserved UI behavior while improving **correctness** and **maintainability**
+This artifact shows that I can:
+- Apply **sorting and filtering algorithms** to real UI data flows
+- Use **TypeScript interfaces** and view models to enforce correctness and simplify templates
+- Build **observable pipelines** that are testable, maintainable, and resilient to errors
 
 ---
 
-## Before vs. After  
+## Enhancement Focus
 
-### Before (original `trip-listing.component.ts` excerpt)
+- **Filter**: only trips with a start date in the future are shown  
+- **Sort**: stable ascending sort by start date (O(n log n))  
+- **Search**: debounced, case-insensitive filtering by name/code/resort  
+- **View model**: immutable `TripView` adds `daysUntil`, `startISO` for clean UI  
+- **Error & loading states**: the stream surfaces errors and sets loading flags  
+- **Cleaner lifecycle**: the async pipe replaces manual subscription/unsubscription
+
+These decisions also satisfy the guideline to **make it easy to see both the original and enhanced work** within the ePortfolio. :contentReference[oaicite:2]{index=2}
+
+---
+
+## Before vs. After
+
+### Before (original `trip-listing-component.ts` excerpt)
 
 <details>
   <summary><strong>Show original excerpt</strong></summary>
 
 {% highlight typescript %}
-// ====== Angular Core & Imports ======
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-
-import { TripCardComponent } from '../trip-card/trip-card.component';
-import { TripDataService } from '../services/trip-data.service';
-import { AuthenticationService } from '../services/authentication.service';
-import { Trip } from '../models/trip';
-
-@Component({
-  selector: 'app-trip-listing',
-  standalone: true,
-  imports: [CommonModule, TripCardComponent],
-  templateUrl: './trip-listing.component.html',
-  styleUrls: ['./trip-listing.component.css'],
-})
-export class TripListingComponent implements OnInit {
-  public trips: Trip[] = [];
-
-  ngOnInit(): void {
-    // Trips assigned as-is: no filtering or sorting
-    this.tripDataService.getTrips().subscribe(trips => {
-      this.trips = trips;
-    });
-  }
+// No filtering or sorting; manual subscription
+ngOnInit(): void {
+  this.tripDataService.getTrips().subscribe(trips => {
+    this.trips = trips;
+  });
 }
 {% endhighlight %}
 
 </details>
 
-**What’s wrong here?**  
-- No filtering: past trips are shown even when not relevant.  
-- No sorting: order depends on API/DB return sequence.  
-- Weak typing (pre-enhancement) required conversions for numeric operations.
+**Issues:**  
+- Past trips are shown; results are not ordered  
+- Manual subscription and ad hoc state updates  
+- Weak numeric typing (pre-enhancement) required conversions elsewhere
 
 **View full file in repo:**  
-- [Original `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing.component.ts)
+- [Original `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing-component.ts)
 
 ---
 
-### After (enhanced `trip-listing.component.ts` excerpt)
+### After (enhanced `trip-listing-component.ts` excerpt)
 
 <details>
   <summary><strong>Show enhanced excerpt</strong></summary>
 
 {% highlight typescript %}
-export class TripListingComponent implements OnInit {
-  public trips: Trip[] = [];
-
-  ngOnInit(): void {
-    this.tripDataService.getTrips().subscribe(trips => {
-      const now = new Date();
-      this.trips = trips
-        // Show only upcoming trips
-        .filter(t => new Date(t.start) > now)
-        // Sort chronologically
-        .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
-    });
-  }
-}
+// Build an observable pipeline: filter upcoming, sort by date, then search
+this.upcomingTrips$ = combineLatest([
+  this.tripDataService.getTrips().pipe(
+    map(trips => trips.filter(t => new Date(t.start) > new Date())),
+    map(trips => trips.map(t => toTripView(t))),
+    map(vms => [...vms].sort((a, b) => a.start.getTime() - b.start.getTime())),
+    catchError(() => of([]))
+  ),
+  this.search$.pipe(debounceTime(150), distinctUntilChanged(), startWith(''))
+]).pipe(
+  map(([trips, q]) => !q ? trips :
+    trips.filter(t =>
+      t.name.toLowerCase().includes(q.toLowerCase()) ||
+      t.code.toLowerCase().includes(q.toLowerCase()) ||
+      t.resort.toLowerCase().includes(q.toLowerCase())
+    )
+  )
+);
 {% endhighlight %}
 
 </details>
 
-**How it’s better now:**  
-- Users see **relevant, upcoming** trips only.  
-- Trips are **chronologically ordered** for clarity.  
-- Stronger typing (in the Angular `Trip` model) removes conversions and aligns the front end with the DB schema.
+**Why this is better:**  
+- **Relevant**: shows only upcoming trips  
+- **Predictable**: stable chronological ordering  
+- **Usable**: debounced search improves UX on larger lists  
+- **Maintainable**: pure helpers + immutable transforms support testing and future changes
 
 **View full file in repo:**  
-- [Enhanced `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing.component.ts)
-
-> Note: The `Trip` interface is defined in your Angular models (e.g., `src/app/models/trip.ts`). As part of this enhancement, numeric fields like `length` and `perPerson` are typed as **number** to support sorting/filters without conversion.
+- [Enhanced `trip-listing.component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing-component.ts)
 
 ---
 
-## Reflection  
+## Reflection
 
-This enhancement shows how **algorithms (filter/sort)** and **data structures (typed interfaces)** improve a real front-end workflow. By constraining the data with strong types and applying the right processing steps, the UI becomes both more useful and more reliable.  
-
-I validated the behavior by confirming only future trips are rendered and that they appear in ascending date order. The improved typing also removed ad hoc conversions in the template/code.
+This enhancement demonstrates how **algorithms (filter/sort/search)** and **data structures (typed interfaces and view models)** improve both code quality and user experience. I validated correctness by confirming only future trips render, the order is ascending by date, and search behaves as expected. These changes directly align with the intent of the Algorithms & Data Structures milestone. :contentReference[oaicite:3]{index=3}
 
 ---
 
-## Course Outcomes Demonstrated  
+## Course Outcomes Demonstrated
 
-- Apply **algorithms** (filtering, sorting) to improve functionality and UX  
-- Use **TypeScript interfaces** to enforce data integrity and reduce bugs  
-- Build **maintainable components** that align with back-end data contracts
+- Apply **algorithmic principles** to design and evaluate computing solutions in real applications  
+- Strengthen **data integrity and type safety** through structured models and view models  
+- Deliver **maintainable, testable** front-end code using observable pipelines  
+
