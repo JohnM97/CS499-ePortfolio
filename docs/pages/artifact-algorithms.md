@@ -6,11 +6,11 @@ permalink: /pages/artifact-algorithms.html
 
 ## Overview  
 
-This artifact also comes from the **Travlr Getaways** full stack application in CS 465. The Angular front-end consumed data from MongoDB through Express APIs, and trips were displayed dynamically to users.  
+This artifact also comes from the **Travlr Getaways** full stack application in CS 465. The Angular front end consumed data from MongoDB through Express APIs, and trips were displayed dynamically to users.  
 
-In the original implementation, the Angular `Trip` model defined fields inconsistently (e.g., storing `length` and `perPerson` as strings). This caused inefficiencies when displaying or sorting data.  
+In the original implementation, the Angular `trip-listing-component.ts` component handled trips using inconsistent typing (e.g., storing `length` and `perPerson` as strings). This caused inefficiencies when displaying or sorting data.  
 
-The enhanced version applies **stronger typing** to the `Trip` interface, ensuring consistency with the improved database schema. This creates a more reliable data flow from database → API → front-end and demonstrates how **data structures and algorithms** align across the stack.  
+The enhanced version applies **stronger typing** in `trip-listing-component.ts`, ensuring consistency with the improved database schema. This creates a more reliable data flow from database → API → front end and demonstrates how **data structures and algorithms** align across the stack.  
 
 ---
 
@@ -25,7 +25,7 @@ This artifact highlights my ability to:
 
 ## Enhancement Focus  
 
-- Changed `length` and `perPerson` from `string` to **number** in the TypeScript interface  
+- Changed `length` and `perPerson` from `string` to **number** in the component’s `Trip` interface  
 - Matched the front-end interface with the updated Mongoose schema  
 - Ensured consistent typing across the stack → database, server, and client  
 - Preserved existing behavior while strengthening correctness and maintainability  
@@ -34,7 +34,7 @@ This artifact highlights my ability to:
 
 ## Before vs. After  
 
-### Before (original `trip.ts` interface)  
+### Before (original `trip-listing-component.ts` excerpt)  
 
 <details>
   <summary><strong>Show original excerpt</strong></summary>
@@ -61,11 +61,11 @@ export interface Trip {
 - Weak typing increases risk of errors when binding data in Angular templates.  
 
 **View full file in repo:**  
-- [Original `trip.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing.component.ts)  
+- [Original `trip-listing-component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/original/trip-listing-component.ts)  
 
 ---
 
-### After (enhanced `trip.ts` interface)  
+### After (enhanced `trip-listing-component.ts` excerpt)  
 
 <details>
   <summary><strong>Show enhanced excerpt</strong></summary>
@@ -92,13 +92,13 @@ export interface Trip {
 - Reduces type mismatches across the stack, improving reliability and maintainability.  
 
 **View full file in repo:**  
-- [Enhanced `trip.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing.component.ts)  
+- [Enhanced `trip-listing-component.ts`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/algorithms/enhanced/trip-listing-component.ts)  
 
 ---
 
 ## Reflection  
 
-Enhancing the `Trip` interface emphasized the importance of **consistent data modeling** between the client and server. By aligning the Angular front end with the improved MongoDB schema, I eliminated type mismatches that could have introduced runtime errors.  
+Enhancing `trip-listing-component.ts` emphasized the importance of **consistent data modeling** between the client and server. By aligning the Angular front end with the improved MongoDB schema, I eliminated type mismatches that could have introduced runtime errors.  
 
 The challenge was ensuring that UI components using the `Trip` model were not broken by the type change. I validated by re-running the Angular app and verifying that trip data displayed correctly and that sorting/filtering worked without type conversion.  
 
@@ -109,4 +109,3 @@ The challenge was ensuring that UI components using the `Trip` model were not br
 - Apply **algorithms and data structures** concepts to real-world full stack applications  
 - Strengthen **data integrity** through consistent type enforcement across the stack  
 - Demonstrate **problem-solving skills** by refactoring weak typing into maintainable, scalable code structures  
-
