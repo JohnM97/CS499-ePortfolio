@@ -61,7 +61,7 @@ module.exports = Trip;
 
 ---
 
-### First Enhancement (baseline you had)
+### First Enhancement (baseline enhancement)
 
 <details>
   <summary><strong>Show prior enhanced excerpt</strong></summary>
@@ -89,7 +89,7 @@ const tripSchema = new mongoose.Schema({
 
 ---
 
-### New Enhanced Version (current)
+### New Enhanced Version
 
 <details>
   <summary><strong>Show new enhanced excerpt</strong></summary>
