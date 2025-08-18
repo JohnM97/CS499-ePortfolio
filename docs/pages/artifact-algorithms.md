@@ -4,8 +4,6 @@ title: Algorithms & Data Structures
 permalink: /pages/artifact-algorithms.html
 ---
 
-{% include nav.html %}
-
 ## Overview  
 
 This artifact also comes from the **Travlr Getaways** full stack application in CS 465. The Angular front-end consumed data from MongoDB through Express APIs, and trips were displayed dynamically to users.  
