@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: default
 title: Algorithms & Data Structures
 permalink: /pages/artifact-algorithms.html
 ---
+
+{% include nav.html %}
 
 ## Overview  
 
