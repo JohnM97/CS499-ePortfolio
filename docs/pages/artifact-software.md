@@ -200,7 +200,7 @@ Refactoring the Express server reinforced the value of **separation of concerns*
 
 The biggest challenge was ensuring the refactor didn’t break existing routes. I validated changes by running the app locally, testing all API endpoints, and checking both the logs and error responses.  
 
-This process improved **maintainability, observability, and reliability** of the server—qualities that are essential in professional software engineering.  
+This process improved **maintainability, observability, and reliability** of the server qualities that are essential in professional software engineering.  
 
 ---
 
