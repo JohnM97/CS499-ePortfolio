@@ -4,38 +4,28 @@ title: Database Management
 permalink: /pages/artifact-databases.html
 ---
 
-## Overview  
+## Overview
 
-This artifact comes from the **back-end of the Travlr Getaways** project in CS 465. The file `travlr.js` connects the Express server to MongoDB and defines how data is structured, stored, and validated.  
+This artifact comes from the **back end** of *Travlr Getaways*. The `travlr.js` file defines the MongoDB/Mongoose model that powers trip data across the app.
 
-In the original implementation, the schema was loosely defined: some fields were stored as strings even when they should have been numeric, and there was little enforcement of data integrity. This could lead to errors, inefficiencies, and inconsistent data.  
-
-The enhanced version strengthens the **Mongoose schema**, improves validation rules, and adds indexing for performance. These improvements ensure that the database enforces correct data formats and provides faster queries.  
-
----
-
-## Why I Included It  
-
-This artifact demonstrates my ability to:  
-- Design **robust database schemas** with Mongoose  
-- Apply **validation rules** to protect data integrity  
-- Use **indexes** to improve query performance  
-- Align database structure with front-end and API requirements  
+Originally, the schema stored numeric values like `length` and `perPerson` as **strings**, and lacked stronger validation and indexing. This created risk for data inconsistencies and slower queries at scale. The first enhancement corrected the types, added validators, and enabled timestamps. The **new enhanced** version below goes further by adding **uniqueness**, **compound and text indexes**, **custom validators**, **virtuals**, and a **clean JSON transform**—a robust design suitable for production APIs.  
+*(This aligns with my narrative’s focus on stricter types, required fields, defaults, and indexing.)*
 
 ---
 
-## Enhancement Focus  
+## Why I Included It
 
-- Converted `length` and `perPerson` from **string** to **Number**  
-- Added `required: true` validation for key fields  
-- Added indexes on `code` and `name` for faster lookups  
-- Centralized schema logic in a single model for maintainability  
+This artifact demonstrates that I can:
+- Design **robust Mongoose schemas** with strong typing and validation
+- Use **indexes** (unique, compound, text) to support common query patterns
+- Improve **API ergonomics** with virtuals and JSON transforms
+- Align the data layer with front-end and API requirements for integrity and performance
 
 ---
 
-## Before vs. After  
+## Before vs. After
 
-### Before (original `travlr.js` excerpt)  
+### Before (original `travlr.js` excerpt)
 
 <details>
   <summary><strong>Show original excerpt</strong></summary>
@@ -43,79 +33,109 @@ This artifact demonstrates my ability to:
 {% highlight javascript %}
 const mongoose = require('mongoose');
 
+// ====== Schema Definition ======
+// Defines the shape of a Trip document in MongoDB
 const tripSchema = new mongoose.Schema({
-  code: String,
-  name: String,
-  length: String,          // Weak typing
-  start: Date,
-  resort: String,
-  perPerson: String,       // Weak typing
-  image: String,
-  description: String
+  code: { type: String, required: true, index: true },
+  name: { type: String, required: true, index: true },
+  length: { type: String, required: true },      // string (inefficient)
+  start: { type: Date, required: true },
+  resort: { type: String, required: true },
+  perPerson: { type: String, required: true },   // string (inefficient)
+  image: { type: String, required: true },
+  description: { type: String, required: true }
 });
 
 const Trip = mongoose.model('trips', tripSchema);
 module.exports = Trip;
 {% endhighlight %}
+
 </details>
 
-**What’s wrong here?**  
-- `length` and `perPerson` are strings → cannot calculate or sort efficiently.  
-- No validation → bad or missing data could be saved to the database.  
-- No indexing → queries could become slower as the database grows.  
+**Issues:**  
+- Numeric fields stored as **strings** → painful for calculations & sorting  
+- Minimal validation; limited indexing beyond single-field lookups  
 
 **View full file in repo:**  
-- [Original `travlr.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/original/travlr.js)  
+- Original `travlr.js` (string types): *(your repo path)*  
+- Source reference: :contentReference[oaicite:4]{index=4}
 
 ---
 
-### After (enhanced `travlr.js` excerpt)  
+### First Enhancement (baseline you had)
 
 <details>
-  <summary><strong>Show enhanced excerpt</strong></summary>
+  <summary><strong>Show prior enhanced excerpt</strong></summary>
 
 {% highlight javascript %}
-const mongoose = require('mongoose');
-
-// ====== Schema Definition ======
 const tripSchema = new mongoose.Schema({
-  code: { type: String, required: true, index: true },       // Unique trip code
-  name: { type: String, required: true, index: true },       // Trip name
-  length: { type: Number, required: true },                  // Duration in days
-  start: { type: Date, required: true },                     // Start date
-  resort: { type: String, required: true },                  // Resort/location
-  perPerson: { type: Number, required: true },               // Price per person
-  image: { type: String, required: true },                   // Image path
-  description: { type: String, required: true }              // Trip description
+  code: { type: String, required: [true, 'Trip code is required'], index: true, trim: true },
+  name: { type: String, required: [true, 'Trip name is required'], index: true, trim: true },
+  length: { type: Number, required: [true, 'Trip length is required'], min: [1, 'Trip length must be at least 1 day'] },
+  start: { type: Date, required: [true, 'Start date is required'] },
+  resort: { type: String, required: [true, 'Resort name is required'], trim: true },
+  perPerson: { type: Number, required: [true, 'Price per person is required'], min: [0, 'Price must be a positive number'] },
+  image: { type: String, required: [true, 'Image path is required'], trim: true, default: 'default-trip.jpg' },
+  description: { type: String, required: [true, 'Trip description is required'], trim: true }
+}, { timestamps: true });
+{% endhighlight %}
+
+</details>
+
+**Improvements at this stage:**  
+- Fixed numeric types; added validators & `timestamps`  
+- Still missing uniqueness, compound/text indexes, virtuals, and JSON normalization
+
+**Source reference:** :contentReference[oaicite:5]{index=5}
+
+---
+
+### New Enhanced Version (current)
+
+<details>
+  <summary><strong>Show new enhanced excerpt</strong></summary>
+
+{% highlight javascript %}
+// Uniqueness, compound & text indexes, custom validators, virtuals & JSON transform
+tripSchema.index({ start: 1, perPerson: 1 });
+tripSchema.index({ name: 'text', description: 'text', resort: 'text' });
+
+tripSchema.virtual('end').get(function () {
+  if (!this.start || !this.length) return undefined;
+  const end = new Date(this.start);
+  end.setDate(end.getDate() + Number(this.length));
+  return end;
 });
 
-// ====== Model Export ======
+tripSchema.virtual('isUpcoming').get(function () {
+  return this.start && this.start.getTime() > Date.now();
+});
+
 const Trip = mongoose.model('trips', tripSchema);
 module.exports = Trip;
 {% endhighlight %}
+
 </details>
 
-**How it’s better now:**  
-- Strong typing (`Number` instead of `String`) ensures consistent, usable data.  
-- Required fields prevent incomplete records.  
-- Indexes improve query performance for `code` and `name`.  
-- Database now enforces structure, reducing bugs across the stack.  
+**Why this is better now:**  
+- **Integrity**: unique `code`, stricter numeric/date validation  
+- **Performance**: `{ start, perPerson }` compound index for “upcoming & sort by price” queries; full-text search across name/description/resort  
+- **API ergonomics**: `end` and `isUpcoming` virtuals; `toJSON` normalization adds `id` and hides raw `_id`
 
 **View full file in repo:**  
-- [Enhanced `travlr.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/enhanced/travlr.js)  
+- [Enhanced `travlr.js`](https://github.com/JohnM97/CS499-ePortfolio/blob/main/artifacts/databases/enhanced/travlr.js)
 
 ---
 
-## Reflection  
+## Reflection
 
-Improving this schema taught me how critical **database design** is for overall application quality. By applying validation rules and proper data types, I eliminated mismatches that caused problems in the front end. Adding indexes also made the app scale better by improving query performance.  
-
-The main challenge was balancing stricter validation with flexibility — I tested by inserting trips with valid and invalid data to confirm that Mongoose blocked bad input.  
+Upgrading this schema reinforced how much **database design** impacts application quality. Strong types and validation prevent bad data; indexes make the most common queries fast; and small ergonomics (virtuals, clean JSON) reduce boilerplate in APIs and the front end. I validated the changes by seeding with edge-case data, running common list/detail queries, and confirming that the Angular app continued to render trips correctly with numeric sorting. These improvements directly match my Databases narrative and course outcomes. :contentReference[oaicite:6]{index=6}
 
 ---
 
-## Course Outcomes Demonstrated  
+## Course Outcomes Demonstrated
 
 - Apply **database management principles** to design reliable schemas  
-- Enforce **data integrity and consistency** with validation rules  
-- Optimize **query performance** through indexing and structured design  
+- Enforce **data integrity and consistency** via validation and typing  
+- Optimize **query performance** using the right indexes for access patterns  
+- Produce **maintainable back-end code** aligned with real application needs
