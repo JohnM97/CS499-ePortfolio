@@ -2,6 +2,7 @@
 layout: home
 title: Portfolio Overview
 ---
+
 ![Portfolio Overview Banner]({{ site.baseurl }}/assets/images/portfolio_overview.png)
 
 ## Introduction
